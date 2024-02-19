@@ -1,8 +1,8 @@
 <?php
 
 namespace Database\Seeders;
-//namespace App\Models;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+namespace App\Models;
+//use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -12,9 +12,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $users = \App\Models\User::factory(10)->create();
+        $users = User::factory(10)
+            ->has(Post::factory(20))
 
-        $luke = \App\Models\User::factory()->create([
+            ->create();
+
+        Comments::factory(100)->create();
+
+        $luke = User::factory()->create([
             'name' => 'Luke Show',
             'email' => 'Lukeshow@gmail.com',
         ]);
